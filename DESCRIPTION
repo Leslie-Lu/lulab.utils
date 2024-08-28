@@ -7,9 +7,11 @@ Authors@R:
 Description: Miscellaneous functions commonly used by 'LuLab'.
 License: Artistic-2.0
 URL: https://leslie-lu.github.io/
+BugReports: https://github.com/Leslie-Lu/lulab.utils/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+RemoteUrl: https://github.com/Leslie-Lu/lulab.utils
 Imports: 
     car,
     descr,
