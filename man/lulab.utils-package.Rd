@@ -8,6 +8,14 @@
 \description{
 Miscellaneous functions commonly used by 'LuLab'.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://leslie-lu.github.io/}
+  \item Report bugs at \url{https://github.com/Leslie-Lu/lulab.utils/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Zhen Lu \email{luzh29@mail2.sysu.edu.cn} (\href{https://orcid.org/0000-0002-3481-6310}{ORCID})
 

@@ -18,8 +18,11 @@ Imports:
     dplyr,
     magrittr,
     openxlsx,
+    purrr,
     rlang,
     stringr,
     table1
-
-
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
