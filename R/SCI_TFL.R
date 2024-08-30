@@ -12,7 +12,6 @@
 #' @return excel file
 #' @author Zhen Lu
 #' @importFrom magrittr %>%
-#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
@@ -147,8 +146,8 @@ Table1<-function(df,ycol,xcol,xlabels,result_dir){
           }
         }
       }
-      s1[1]= p %>% round(.data, 3) %>% format(.data,nsmall = 3) %>%
-        dplyr::if_else(.data=='0.000','<0.001',.data)
+      s1[1]= p %>% round(., 3) %>% format(.,nsmall = 3) %>%
+        dplyr::if_else(.=='0.000','<0.001',.)
       s1
     } else {
       table1::render.default(x=x, name=name, ...)
@@ -188,7 +187,7 @@ Table1<-function(df,ycol,xcol,xlabels,result_dir){
          render.categorical=my.render.cat,
          overall= 'Total')
   result %>% as.data.frame() %>%
-    sapply(function(x) x %>% stringr::str_replace_all(.data, '&plusmn;', "\u00B1")) %>%
+    sapply(function(x) x %>% stringr::str_replace_all(., '&plusmn;', "\u00B1")) %>%
     as.data.frame() %>%
     openxlsx::write.xlsx(
       file= file.path(result_dir,'Table1.xlsx'),

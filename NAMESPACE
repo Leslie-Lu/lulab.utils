@@ -3,4 +3,3 @@
 export(Table1)
 export(check_cha)
 importFrom(magrittr,"%>%")
-importFrom(rlang,.data)
