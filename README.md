@@ -14,6 +14,8 @@ You can install the development version of lulab.utils from [GitHub](https://git
 ``` r
 # install.packages("devtools")
 devtools::install_github("Leslie-Lu/lulab.utils")
+# or
+install.packages("lulab.utils", repos = c("https://leslie-lu.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 
