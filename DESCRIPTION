@@ -1,5 +1,5 @@
 Package: lulab.utils
-Title: Supporting Functions Maintained by Zhen Lu
+Title: Supporting Functions Maintained by 'Zhen Lu'
 Version: 0.0.2
 Authors@R: 
     person("Zhen", "Lu", email = "luzh29@mail2.sysu.edu.cn", role = c("aut", "cre"),
