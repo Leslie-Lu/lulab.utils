@@ -8,15 +8,18 @@
 #' @param xcol variables to be compared
 #' @param xlabels levels of ycol
 #' @param result_dir directory to save the result
+#' @param verbose logical, controlling the output
 #'
 #' @return excel file
 #' @author Zhen Lu
 #' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @import boot
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' library(boot)
+#' \donttest{
+#' data("melanoma", package = "boot")
 #' melanoma2 <- melanoma
 #' # Factor the basic variables that
 #' # we're interested in
@@ -30,10 +33,10 @@
 #'   df= melanoma2,
 #'   xcol= setdiff(names(melanoma2), "status"),
 #'   ycol= "status",
-#'   result_dir= "C:/Users/luzh2/Desktop"
+#'   result_dir= tempdir()
 #' )
 #' }
-Table1<-function(df,ycol,xcol,xlabels,result_dir){
+Table1<-function(df,ycol,xcol,xlabels,result_dir,verbose=TRUE){
   if(any(c(missing(df),missing(xcol),missing(ycol)))){
     return("parameters missing! arg1 data.frame, arg2 ycol, arg3 xcol")
   }
@@ -186,13 +189,16 @@ Table1<-function(df,ycol,xcol,xlabels,result_dir){
          render.continuous=my.render.cont,
          render.categorical=my.render.cat,
          overall= 'Total')
-  result %>% as.data.frame() %>%
+  result %<>% as.data.frame() %>%
     sapply(function(x) x %>% stringr::str_replace_all(., '&plusmn;', "\u00B1")) %>%
-    as.data.frame() %>%
+    as.data.frame() 
+  result %>%
     openxlsx::write.xlsx(
       file= file.path(result_dir,'Table1.xlsx'),
       asTable= TRUE
     )
-  cat(sprintf('Table1.xlsx has been saved in your specified folder of:\n%s\n',result_dir))
+  if(verbose){
+    cat(sprintf('Table1.xlsx has been saved in your specified folder of:\n%s\n',result_dir))
+  }
   return(result)
 }

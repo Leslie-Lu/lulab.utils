@@ -6,7 +6,7 @@
 \alias{lulab.utils-package}
 \title{lulab.utils: Supporting Functions Maintained by Zhen Lu}
 \description{
-Miscellaneous functions commonly used by 'LuLab'.
+Miscellaneous functions commonly used by LuLab. This package aims to help more researchers on epidemiology to perform data management and visualization more efficiently.
 }
 \seealso{
 Useful links:

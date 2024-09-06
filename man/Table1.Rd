@@ -4,7 +4,7 @@
 \alias{Table1}
 \title{Table1}
 \usage{
-Table1(df, ycol, xcol, xlabels, result_dir)
+Table1(df, ycol, xcol, xlabels, result_dir, verbose = TRUE)
 }
 \arguments{
 \item{df}{a data.frame}
@@ -16,6 +16,8 @@ Table1(df, ycol, xcol, xlabels, result_dir)
 \item{xlabels}{levels of ycol}
 
 \item{result_dir}{directory to save the result}
+
+\item{verbose}{logical, controlling the output}
 }
 \value{
 excel file
@@ -27,8 +29,8 @@ Make Table1
 This function is used to make Table1 and return excel file.
 }
 \examples{
-\dontrun{
-library(boot)
+\donttest{
+data("melanoma", package = "boot")
 melanoma2 <- melanoma
 # Factor the basic variables that
 # we're interested in
@@ -42,7 +44,7 @@ test= Table1(
   df= melanoma2,
   xcol= setdiff(names(melanoma2), "status"),
   ycol= "status",
-  result_dir= "C:/Users/luzh2/Desktop"
+  result_dir= tempdir()
 )
 }
 }

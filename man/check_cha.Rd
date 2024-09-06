@@ -4,12 +4,14 @@
 \alias{check_cha}
 \title{check_cha}
 \usage{
-check_cha(col, df)
+check_cha(col, df, verbose = TRUE)
 }
 \arguments{
 \item{col}{a character variable name}
 
 \item{df}{a data.frame}
+
+\item{verbose}{logical, controlling the output}
 }
 \value{
 a distribution table of the character variable in the data frame
@@ -21,8 +23,8 @@ Check for missing values for character columns
 This function is used to check the distribution of character variables in the data frame.
 }
 \examples{
-\dontrun{
-library(boot)
+\donttest{
+data("melanoma", package = "boot")
 melanoma2 <- melanoma
 check_cha('status', melanoma2)
 # or

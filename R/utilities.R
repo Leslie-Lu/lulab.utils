@@ -5,21 +5,23 @@
 #' @rdname check_cha
 #' @param col a character variable name
 #' @param df a data.frame
+#' @param verbose logical, controlling the output
 #'
 #' @return a distribution table of the character variable in the data frame
 #' @author Zhen Lu
 #' @importFrom magrittr %>%
+#' @import boot
 #' @export
 #' 
 #' @examples
-#' \dontrun{
-#' library(boot)
+#' \donttest{
+#' data("melanoma", package = "boot")
 #' melanoma2 <- melanoma
 #' check_cha('status', melanoma2)
 #' # or
 #' mapply(check_cha,'status', MoreArgs= list(melanoma2))
 #' }
-check_cha= function(col, df){
+check_cha= function(col, df, verbose=TRUE){
   raw= df
 
   na_idi= c((purrr::map(raw[col],is.na) %>% unlist) |
@@ -33,7 +35,7 @@ check_cha= function(col, df){
 
   if(sum(na_idi)>0){
     r1= r1[c('Missing', setdiff(names(r1),c('Missing')))]
-    print(sprintf('%s has missing values', col))
+    if(verbose) print(sprintf('%s has missing values', col))
   }
   return(r1)
 }
