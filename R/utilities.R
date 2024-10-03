@@ -129,26 +129,36 @@ check_wget <- function() {
   }
 
   # Run the wget --version command
+  result_1= character(0)
+  tryCatch(
+    {
+      result_1 <- system("wget.exe --version", intern = TRUE, ignore.stderr = TRUE)
+    }, error = function(e) {
+      result_1 <- character(0)
+    }
+  )
+  if (length(result_1) > 0 && grepl("GNU Wget", result_1[1])) {
+    message("wget is already installed on your system.")
+    return(invisible(TRUE))
+  }
+
   result= character(0)
   tryCatch(
     {
-      result <- system(sprintf("%s/wget.exe --version", rappdirs::user_data_dir(appname = "wget", appauthor="LuLab")), intern = TRUE, ignore.stderr = TRUE)
+      result_2 <- system(sprintf("%s/wget.exe --version", rappdirs::user_data_dir(appname = "wget", appauthor="LuLab")), intern = TRUE, ignore.stderr = TRUE)
     }, error = function(e) {
       result <- character(0)
     }
   )
-
   # Check the exit status
   if (length(result) > 0 && grepl("GNU Wget", result[1])) {
     message("wget is already installed on your system.")
     return(invisible(TRUE))
   } else {
     message("wget is not installed.")
-    if (!interactive()) {
-      message("Please install wget manually on your system.")
-      return(invisible(FALSE))
-    }
-    ask_yes_no <- utils::askYesNo("Do you want to download wget now?\n", prompts = getOption("askYesNo", gettext(c("Yes", "No", "Cancel"))))
+
+    ask_yes_no <- utils::askYesNo("Do you want to download wget now?\n", prompts = getOption("askYesNo", gettext(c("Yes", "No", "Cancel"))), default = TRUE)
+    if(!interactive()) ask_yes_no= TRUE
     if (is.na(ask_yes_no)) {
       message("Please install wget manually on your system.")
       return(invisible(FALSE))
@@ -216,7 +226,9 @@ use_wget <- function(use = TRUE) {
   }else{
     message("And we will use wget to download files.")
     PATH= Sys.getenv('PATH')
-    Sys.setenv(PATH = sprintf("%s;%s", rappdirs::user_data_dir(appname = "wget", appauthor="LuLab"), PATH))
+    if (!grepl("wget", PATH)){
+      Sys.setenv(PATH = sprintf("%s;%s", rappdirs::user_data_dir(appname = "wget", appauthor="LuLab"), PATH))
+    }
 
     options(download.file.method = "wget")
     options(download.file.extra = c("-c"))

@@ -1,3 +1,5 @@
+library(testthat)
+
 test_that("test if wget is installed", {
   use_wget(use = FALSE)
 
