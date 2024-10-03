@@ -123,8 +123,8 @@ test_mirror= function(region, verbose=TRUE){
 check_wget <- function() {
   # check if os is windows
   if (Sys.info()["sysname"] != "Windows") {
-    message("This function is intended to check wget on Windows.\n")
-    message("Please install wget manually on your system.\n")
+    message("This function is intended to check wget on Windows.")
+    message("Please install wget manually on your system.")
     return(invisible(FALSE))
   }
 
@@ -222,7 +222,14 @@ use_wget <- function(use = TRUE) {
   }
 
   if(!wget){
-    return(invisible(FALSE))
+    if(Sys.info()["sysname"] != "Windows"){
+      message("And we will use wget to download files.")
+      options(download.file.method = "wget")
+      options(download.file.extra = c("-c"))
+      return(invisible(TRUE))
+    }else{
+      return(invisible(FALSE))
+    }
   }else{
     message("And we will use wget to download files.")
     PATH= Sys.getenv('PATH')
