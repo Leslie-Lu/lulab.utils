@@ -75,9 +75,9 @@ test_mirror= function(region, verbose=TRUE){
       end_time <- Sys.time()
       download_times[i] <- as.numeric(difftime(end_time, start_time, units = "secs"))
     }, error = function(e) {
-      download_times[i] <- Inf
+      download_times[i] <- 999
     }, warning = function(w) {
-      download_times[i] <- Inf
+      download_times[i] <- 999
     }
     )
   }
@@ -145,7 +145,7 @@ check_wget <- function() {
   result= character(0)
   tryCatch(
     {
-      result_2 <- system(sprintf("%s/wget.exe --version", rappdirs::user_data_dir(appname = "wget", appauthor="LuLab")), intern = TRUE, ignore.stderr = TRUE)
+      result <- system(sprintf("%s/wget.exe --version", rappdirs::user_data_dir(appname = "wget", appauthor="LuLab")), intern = TRUE, ignore.stderr = TRUE)
     }, error = function(e) {
       result <- character(0)
     }
@@ -222,14 +222,7 @@ use_wget <- function(use = TRUE) {
   }
 
   if(!wget){
-    if(Sys.info()["sysname"] != "Windows"){
-      message("And we will use wget to download files.")
-      options(download.file.method = "wget")
-      options(download.file.extra = c("-c"))
-      return(invisible(TRUE))
-    }else{
-      return(invisible(FALSE))
-    }
+    return(invisible(FALSE))
   }else{
     message("And we will use wget to download files.")
     PATH= Sys.getenv('PATH')
