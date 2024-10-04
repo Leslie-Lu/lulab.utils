@@ -11,13 +11,15 @@ test_that("test if wget is installed", {
   use_wget(use = TRUE)
 
   # check the result
-  expect_equal(getOption("download.file.method"), "wget")
-  expect_equal(getOption("download.file.extra"), c("-c"))
+  if(!Sys.info()["sysname"] == "Windows"){
+    expect_equal(getOption("download.file.method"), "wget")
+    expect_equal(getOption("download.file.extra"), c("-c"))
 
-  # test download to prove wget is used
-  test_url <- "https://eternallybored.org/misc/wget/1.21.4/64/wget.exe"
-  test_destfile <- tempfile()
-  download.file(test_url, destfile = test_destfile)
+    # test download to prove wget is used
+    test_url <- "https://eternallybored.org/misc/wget/1.21.4/64/wget.exe"
+    test_destfile <- tempfile()
+    download.file(test_url, destfile = test_destfile)
 
-  expect_true(file.exists(test_destfile))
+    expect_true(file.exists(test_destfile))
+  }
 })
