@@ -11,7 +11,7 @@ test_that("test if wget is installed", {
   use_wget(use = TRUE)
 
   # check the result
-  if(!Sys.info()["sysname"] == "Windows"){
+  if(Sys.info()["sysname"] == "Windows"){
     expect_equal(getOption("download.file.method"), "wget")
     expect_equal(getOption("download.file.extra"), c("-c"))
 
