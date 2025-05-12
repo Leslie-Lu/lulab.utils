@@ -95,9 +95,11 @@ Table1<-function(df,ycol,xcol,xlabels,result_dir,verbose=TRUE){
                 `$`('F value') %>% `[[`(1)
             }else{
               p= stats::kruskal.test(y~df[[ycol]])$p.value
+              v= stats::kruskal.test(y~df[[ycol]])$statistic
             }
           }else{
             p= stats::kruskal.test(y~df[[ycol]])$p.value
+            v= stats::kruskal.test(y~df[[ycol]])$statistic
           }
         }
       } else {
@@ -151,6 +153,7 @@ Table1<-function(df,ycol,xcol,xlabels,result_dir,verbose=TRUE){
       }
       s1[1]= p %>% round(., 3) %>% format(.,nsmall = 3) %>%
         dplyr::if_else(.=='0.000','<0.001',.)
+      s1[2]= v %>% round(., 3) %>% format(.,nsmall = 3)
       s1
     } else {
       table1::render.default(x=x, name=name, ...)
