@@ -1,5 +1,1 @@
-## R CMD check results
-
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
++ feat: Add new functions: `round2` and `extract_logistic_model`

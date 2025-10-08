@@ -1,3 +1,7 @@
+# lulab.utils 0.1.0
+
++ feat: ✨ Add new functions: `round2` and `extract_logistic_model`
+
 # lulab.utils 0.0.4
 
 + `check_wget()` & `use_wget()`

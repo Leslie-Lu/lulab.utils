@@ -3,6 +3,8 @@
 export(Table1)
 export(check_cha)
 export(check_wget)
+export(extract_logistic_model)
+export(round2)
 export(test_mirror)
 export(use_wget)
 import(boot)
