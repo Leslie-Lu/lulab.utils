@@ -1,1 +1,1 @@
-+ feat: Add new functions: `round2` and `extract_logistic_model`
++ fix: Removed `Table1` function temporarily due to the incompatibility with the latest version of the `Table1` package.

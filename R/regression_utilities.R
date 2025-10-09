@@ -11,6 +11,7 @@
 #' @return A named vector containing the extracted results.
 #' @details This function extracts relevant results from a fitted logistic model and formats them for reporting.
 #' @rdname extract_logistic_model
+#' @importFrom stats qnorm
 #' @export
 extract_logistic_model = function(model,
                            markers_name,
