@@ -38,9 +38,9 @@ extract_logistic_model = function(model,
   case_n = case_size
   control_n = control_size
   outcome_name= outcome_name
-  res = c(biomarker, outcome_name, sample_size, case_n, control_n, BETA, SE, OR_formatted, p_value_scientific, BonferroniSignificance, wald.test, p.value, OR, OR.confint.lower, OR.confint.upper)
+  res = c(rev(dimnames(x$coefficients)[[1]])[1], biomarker, outcome_name, sample_size, case_n, control_n, BETA, SE, OR_formatted, p_value_scientific, BonferroniSignificance, wald.test, p.value, OR, OR.confint.lower, OR.confint.upper)
   names(res) = c(
-    "Metabolite", "Outcome", "Sample size", "Cases", "Controls", "Beta", "SE", "Odds ratio (95% CI)", "P value",
+    "Raw_Metabolite", "Metabolite", "Outcome", "Sample size", "Cases", "Controls", "Beta", "SE", "Odds ratio (95% CI)", "P value",
     sprintf("Significant with a Bonferroni correction (0.05/%d=%s)", n_independent_metabolites, formatC(0.05/n_independent_metabolites, format = "e", digits = 2)),
     "Wald test",
     "Raw P value", "OR", "OR.confint.lower", "OR.confint.upper"

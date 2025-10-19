@@ -1,1 +1,1 @@
-+ fix: Removed `Table1` function temporarily due to the incompatibility with the latest version of the `Table1` package.
++ fix: Add a new column of `Raw_Metabolite` to the output data of the function `extract_logistic_model`
