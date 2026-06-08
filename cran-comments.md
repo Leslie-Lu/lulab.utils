@@ -12,7 +12,12 @@ the package metadata, documentation, and dependency lockfile.
 
 ## R CMD check results
 
-- `R CMD check --as-cran --no-manual lulab.utils_1.0.2.tar.gz`: OK
-- Full `R CMD check --as-cran lulab.utils_1.0.2.tar.gz` passed all checks up
-  to `checking PDF version of manual`, then exceeded the local 10-minute
-  command timeout.
+0 errors | 0 warnings | 1 note
+
+The note is an incoming maintainer email change:
+
+> New maintainer: Zhen Lu <Zhen.Lu.VA@gmail.com>
+> Old maintainer(s): Zhen Lu <luzh29@mail2.sysu.edu.cn>
+
+This is intentional. The maintainer is unchanged; only the contact email was
+updated.
